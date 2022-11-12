@@ -1,1 +1,1 @@
-# A Hostel Finder App
+# A Shop Management System
