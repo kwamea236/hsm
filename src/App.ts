@@ -1,27 +1,26 @@
 import express, {Express, NextFunction, Request, Response, ErrorRequestHandler} from "express";
-import HttpError from "./HttpErrorHandle.js";
+import { StatusCodes } from "http-status-codes";
+
 
 const app: Express = express();
 const PORT = process.env.PORT || 8000;
 
 app.get("/",(req: Request, res: Response)=>{
-    res.json({
-        message: "hello world"
-    });
+    res.send("hello world")
 })
 
+app.get("/about",(req: Request, res: Response)=>{
+    res.send("Hello from the About page");
+})
 
 //custome error pages
 app.use((req, res)=>{
-    res.status(404);
+    res.status(StatusCodes.NOT_FOUND);
     res.send("sorry error");
 })
 
-app.use((err: HttpError, req: Request, res: Response, next: NextFunction)=>{
-    const status = err.status || 404;
-    const message = err.message || "Something went wrong";
-    console.log(message);
-    res.status(status);
+app.use(( req: Request, res: Response, next: NextFunction)=>{
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR);
     res.send("500-internal server error");
 })
 

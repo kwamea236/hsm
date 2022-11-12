@@ -1,1 +1,1 @@
-# To be updated soon hsm
+# A Hostel Finder App

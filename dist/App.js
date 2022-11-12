@@ -4,23 +4,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const http_status_codes_1 = require("http-status-codes");
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 8000;
 app.get("/", (req, res) => {
-    res.json({
-        message: "hello world"
-    });
+    res.send("hello world");
+});
+app.get("/about", (req, res) => {
+    res.send("Hello from the About page");
 });
 //custome error pages
 app.use((req, res) => {
-    res.status(404);
+    res.status(http_status_codes_1.StatusCodes.NOT_FOUND);
     res.send("sorry error");
 });
-app.use((err, req, res, next) => {
-    const status = err.status || 404;
-    const message = err.message || "Something went wrong";
-    console.log(message);
-    res.status(status);
+app.use((req, res, next) => {
+    res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR);
     res.send("500-internal server error");
 });
 app.listen(PORT, () => {
