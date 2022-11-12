@@ -4,7 +4,7 @@ import HttpError from "./HttpErrorHandle.js";
 const app: Express = express();
 const PORT = process.env.PORT || 8000;
 
-app.get("/",(req: Request, es: Response)=>{
+app.get("/",(req: Request, res: Response)=>{
     res.json({
         message: "hello world"
     });
