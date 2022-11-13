@@ -2,15 +2,12 @@ import express, {Express, NextFunction, Request, Response, ErrorRequestHandler} 
 import { StatusCodes } from "http-status-codes";
 
 
+
 const app: Express = express();
 const PORT = process.env.PORT || 8000;
 
 app.get("/",(req: Request, res: Response)=>{
-    res.send("hello world")
-})
-
-app.get("/about",(req: Request, res: Response)=>{
-    res.send("Hello from the About page");
+    res.send("<h1>welcome to the homepage</h1>")
 })
 
 //custome error pages
