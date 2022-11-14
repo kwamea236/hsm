@@ -8,10 +8,7 @@ const http_status_codes_1 = require("http-status-codes");
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 8000;
 app.get("/", (req, res) => {
-    res.send("hello world");
-});
-app.get("/about", (req, res) => {
-    res.send("Hello from the About page");
+    res.send("<h1>welcome to the homepage</h1>");
 });
 //custome error pages
 app.use((req, res) => {
